@@ -50,16 +50,13 @@ app.post('/signin', async (req, res) => {
         const user = await User.findOne({ username });
         if (user === null)
             return res.json({ flag: false, message: 'Wrong username' })
-        const pwdMatch = bcrypt.compare(pwd, user.pwd)
-            .then(() => {
-                if (pwdMatch) {
-                    const token = jwt.sign({ username, pwd: user.pwd }, jwtSecretKey, { expiresIn: '1d' });
-                    return res.json({ flag: true, message: 'success', token })
-                }
-                else
-                    return res.json({ flag: false, message: 'Wrong password' })
-            })
-
+        const pwdMatch = await bcrypt.compare(pwd, user.pwd)
+        if (pwdMatch) {
+            const token = jwt.sign({ username, pwd: user.pwd }, jwtSecretKey, { expiresIn: '1d' });
+            return res.json({ flag: true, message: 'success', token })
+        }
+        else
+            return res.json({ flag: false, message: 'Wrong password' });
     } catch (err) {
         console.log(err);
         return res.status(500).json(err);

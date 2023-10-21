@@ -44,7 +44,7 @@ function FormRow() {
     );
 }
 
-export const mediaArray = Array.from({ length: 32 }, (_, index) => ({
+export const mediaArray = Array.from({ length: 22 }, (_, index) => ({
     id: index, 
     name: <MediaCard key={index}/>
   }));

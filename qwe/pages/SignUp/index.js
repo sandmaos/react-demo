@@ -43,7 +43,7 @@ export default function App() {
         console.log(1, msg);
       })
       .then(() => {
-        navigate('/')
+        navigate('/home')
       })
       .catch((err) => {
         console.log(2, err);
@@ -60,7 +60,6 @@ export default function App() {
           sx={{
             marginTop: 8,
             display: 'flex',
-            width: '80%',
             flexDirection: 'column',
             alignItems: 'center',
           }}
