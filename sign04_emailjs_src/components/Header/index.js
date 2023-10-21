@@ -12,28 +12,29 @@ export default function Header() {
   const userState = useSelector(state => state.userReducer);
   const navigate = useNavigate();
   const location = useLocation();
-  const [path, setPath] = useState('home');
+  const [path, setPath] = useState('/home');
   const username = userState.username;
 
   useEffect(() => {
-    const currPath=location.pathname.slice(1) || 'home';
-    setPath(() => currPath);
-  }, [path]);
+    let currPath = location.pathname;
+    if (currPath !== '/home' && currPath !== '/signin' && currPath !== '/signup')
+      currPath = '/home';
+    setPath(currPath);
+  }, [location.pathname]);
 
-  const handleChange = (event, newPath) => {
+  const handleChange = (_, newPath) => {
     setPath(newPath);
     switch (newPath) {
-      case 'home':
+      case '/home':
         return navigate('home');
-      case 'signin':
+      case '/signin':
         return navigate('signin');
-      case 'signup':
+      case '/signup':
         return navigate('signup');
       default:
         return
     }
   };
-
 
   return (
     <>
@@ -43,13 +44,13 @@ export default function Header() {
           <TabContext value={path}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab label="Home" value="home"  key={1}/>
+                <Tab label="Home" value="/home" key={1} />
                 {
-                  username === '' ? [
-                    <Tab label="Sign In" value="signin" key={2} />,
-                    <Tab label="Sign Up" value="signup" key={3}/>
+                  username === '' &&
+                  [
+                    <Tab label="Sign In" value="/signin" key={2} />,
+                    <Tab label="Sign Up" value="/signup" key={3} />
                   ]
-                    : null
                 }
               </TabList>
             </Box>

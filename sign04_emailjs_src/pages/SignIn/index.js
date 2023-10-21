@@ -76,21 +76,22 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { myCode } = formData;
-    if (myCode === '' || myCode * 1 !== code) {
-      return alert('Wrong Verify Code!')
-    }
+    // if (myCode === '' || myCode * 1 !== code) {
+    //   return alert('Wrong Verify Code!')
+    // }
     axios.post('http://127.0.0.1:5000/signin', formData)
       .then((res) => {
         if (res.data.flag) {
+          alert('Signed In!')
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('username', formData.username);
+          navigate('/home')
+          setTimeout(() => {
+            //update of username in <Header /> slower than location.pathname
+            dispatch({ type: 'signin', data: formData.username })
+          }, 10);
         }
         else throw (res.data.message);
-      })
-      .then(() => {
-        dispatch({ type: 'signin', data: formData.username })
-        alert('Signed In!')
-        navigate('/home')
       })
       .catch((err) => {
         alert(`Sign in failed: ${err}`);
@@ -170,7 +171,6 @@ export default function App() {
                         {
                           isDisabled ? timer : <SendIcon />
                         }
-
                       </IconButton>
                     </InputAdornment>
                   ),
