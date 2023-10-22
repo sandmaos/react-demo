@@ -13,10 +13,10 @@ export default () => {
     // try {
     //     const response = await emailjs.send('service_asyaqtv', 'template_oi5zd4h', templateParams)
     //     console.log('Email sent:', response);
-    //     return 'success';
+    //     return ({ msg: 'success', code: verify_code });
     // } catch (error) {
     //     console.error('Error sending email:', error);
-    //     return 'failed';
+    //     return ({ msg: 'failed', code: verify_code });
     // }
     return new Promise((resolve, reject) => {
         emailjs.send('service_asyaqtv', 'template_oi5zd4h', templateParams)

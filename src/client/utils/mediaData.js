@@ -8,7 +8,7 @@ const generateRandomText = (animalType) => {
 };
 
 // Function to generate an array of data
-const generateBackendData = () => {
+export default () => {
   const data = [];
 
   for (let i = 0; i < 22; i++) {
@@ -22,10 +22,8 @@ const generateBackendData = () => {
       text: randomText,
     });
   }
-
   return data;
 };
 
-// Usage
-export default generateBackendData();
+
 

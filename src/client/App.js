@@ -10,20 +10,21 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 export default function App() {
   const dispatch = useDispatch();
   const [localUsername, setLocalUsername] = useState(localStorage.getItem('username'));
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
     setLocalUsername(null);
-    dispatch({ type: 'logout', data: ''  })
+    dispatch({ type: 'logout', data: { username: '' } });
+    dispatch({ type: 'clearCard', data: [] });
     navigate('/');
   }
 
-  // verify jwt expire
+  // verify jwt expire when refresh website
   useEffect(() => {
     if (localUsername !== null) {
-      dispatch({ type: 'signin', data: localUsername  })
+      dispatch({ type: 'signin', data: { username: localUsername } })
       const token = localStorage.getItem('token');
       axios.post('http://127.0.0.1:5000/jwt', { token })
         .then((res) => {
@@ -47,9 +48,9 @@ export default function App() {
         <Route path='/home' element={<Home />}> </Route>
         <Route path='/signup' element={<SignUp />}> </Route>
         <Route path='/signin' element={<SignIn />}> </Route>
-        <Route path='/*' element={<Navigate to="/home"/>}> </Route>
+        <Route path='/*' element={<Navigate to="/home" />}> </Route>
       </Routes>
-     
+
     </div>
   )
 }

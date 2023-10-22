@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button, Container, Paper } from '@mui/material'
 import Grid from "@mui/material/Grid"
 import Pagination from '@mui/material/Pagination';
@@ -15,6 +15,7 @@ import MediaCard from '../../components/MediaCard';
 
 export default function Header() {
   const dispatch = useDispatch();
+  const cardState = useSelector((state) => state.cardReducer);
   const [localUsername, setLocalUsername] = useState(localStorage.getItem('username'));
   const [currPage, setCurrPage] = useState(1);
   const itemsPerPage = 6;
@@ -24,14 +25,19 @@ export default function Header() {
 
   useEffect(() => {
     if (localUsername !== null) { //fetch cards info 
-      axios.get('http://127.0.0.1:5000/cards')
-        .then((res) => {
-          const cardData = res.data.cardData;
-          initCards(cardData);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
+      var cardData = cardState.cardData;
+      if (cardData.length === 0) { //fetch only when refresh web
+        axios.get('http://127.0.0.1:5000/cards')
+          .then((res) => {
+            cardData = res.data.cardData;
+            dispatch({ type: 'setCard', data: cardData });
+            initCards(cardData);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
+      initCards(cardData);
     }
   }, [searchText, currPage])
 
@@ -39,11 +45,14 @@ export default function Header() {
     var newAllCardsList = [];
     if (searchText !== '') {
       newAllCardsList = cardData.filter((item) => {
-        return (item.type.toLowerCase().indexOf(searchText) !== -1)
+        const regex = new RegExp(searchText, 'i');
+        return regex.test(item.type);
+        // return (item.type.toLowerCase().indexOf(searchText) !== -1)
       })
     }
-    else
+    else {
       newAllCardsList = [...cardData];
+    }
     setTotalPages(Math.ceil(newAllCardsList.length / itemsPerPage));
     const currCardsList = newAllCardsList.slice((currPage - 1) * itemsPerPage, currPage * itemsPerPage);
 
@@ -58,7 +67,8 @@ export default function Header() {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
     setLocalUsername(null);
-    dispatch({ type: 'logout', data: { username: '' } })
+    dispatch({ type: 'logout', data: { username: '' } });
+    dispatch({ type: 'clearCard', data: [] })
   }
 
   return (
@@ -136,11 +146,6 @@ export default function Header() {
                     </Grid>
                   ))}
 
-                  {/* {mediaCards.map((item) => (
-                    <Grid  item xs={4}>
-                      {item}
-                    </Grid>
-                  ))} */}
                 </Grid>
               </Paper>
 

@@ -6,12 +6,9 @@ const userReducer = (preState = initState, action) => {
     const { type, data } = action;
     switch (type) {
         case 'signin':
-            return ({
-                ...preState,
-                username: data
-            });
+            return ({ ...preState, username: data.username });
         case 'logout':
-            return (data);
+            return ({ ...preState, username: data.username  });
         default:
             return preState;
     }

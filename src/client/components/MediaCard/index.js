@@ -5,15 +5,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import lizard from './lizard.jpg';
-import giraffe from './giraffe.jpg';
-import tiger from './tiger.jpg';
-import hippo from './hippo.jpg';
-import kangaroo from './kangaroo.jpg';
-import zebra from './zebra.jpg';
-import koala from './koala.jpg';
-import penguin from './penguin.jpg';
-import dolphin from './dolphin.jpg';
+import lizard from '../../static/lizard.jpg';
+import giraffe from '../../static/giraffe.jpg';
+import tiger from '../../static/tiger.jpg';
+import hippo from '../../static/hippo.jpg';
+import kangaroo from '../../static/kangaroo.jpg';
+import zebra from '../../static/zebra.jpg';
+import koala from '../../static/koala.jpg';
+import penguin from '../../static/penguin.jpg';
+import dolphin from '../../static/dolphin.jpg';
 
 
 export default function MediaCard(props) {
