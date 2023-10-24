@@ -33,22 +33,26 @@ export default function Header() {
 
   useEffect(() => {
     if (localUsername !== null) { //fetch cards info 
-    //   if (sortOption === -1)
-    //     initCards(cardData.sort((a, b) => { return b.id - a.id }));
-    //   else
-    //     initCards(cardData.sort((a, b) => { return a.id - b.id }));
+      if (sortOption === -1)
+        initCards(cardData.sort((a, b) => { return b.id - a.id }));
+      else
+        initCards(cardData.sort((a, b) => { return a.id - b.id }));
    
-      axios.post('http://127.0.0.1:5000/api/cards', { sortOption })
-        .then((res) => {
-          const cardData = res.data.cardData;
-          dispatch({ type: 'setCard', data: cardData });
-          initCards(cardData);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
+      // axios.post('http://127.0.0.1:5000/api/cards', { sortOption })
+      //   .then((res) => {
+      //     const cardData = res.data.cardData;
+      //     dispatch({ type: 'setCard', data: cardData });
+      //     initCards(cardData);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   })
     }
-  }, [searchText, currPage, sortOption])
+    /* !!! Must add cardData, it makes sure when cardData updates, initCards()should
+    call again, then in Card.js, line 35: card[0] || '', since first render(), cardData haven't
+    update, and need another render
+    */
+  }, [searchText, currPage, sortOption, cardData])
 
   const initCards = (cardData) => {
     var newAllCardsList = [];

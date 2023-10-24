@@ -45,6 +45,7 @@ export default function App() {
         }).catch((err) => {
           console.log(err.response.data);
         })
+        
       axios.post('http://127.0.0.1:5000/api/cards', { sortOption: -1 })
         .then((res) => {
           const cardData = res.data.cardData; 

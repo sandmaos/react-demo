@@ -28,7 +28,7 @@ export default function MediaCard(props) {
   const id =  props.id;
   const type = props.type;
   const card = cardData.filter((item) => item.id === id);
-  const { text } = card[0]
+  const { text } = card[0] || ''
   const timeObj = new Date(id);
   const handleImage = () => {
     switch (type) {
