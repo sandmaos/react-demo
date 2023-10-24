@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button, Container } from '@mui/material';
+import Grid from "@mui/material/Grid"
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -14,10 +15,11 @@ export default function Header() {
   const location = useLocation();
   const [path, setPath] = useState('/home');
   const username = userState.username;
+  const allowedPaths = ['/home', '/signin', '/signup'];
 
   useEffect(() => {
     let currPath = location.pathname;
-    if (currPath !== '/home' && currPath !== '/signin' && currPath !== '/signup')
+    if (!allowedPaths.includes(currPath))
       currPath = '/home';
     setPath(currPath);
   }, [location.pathname]);
@@ -40,6 +42,14 @@ export default function Header() {
     <>
       <Container>
         <h1>Header</h1>
+        {
+          username !== '' ?
+          <Grid paddingRight={'10px'} item xs={4} textAlign={'right'}>
+          <span>Welcome, {username}</span>
+        </Grid>
+        :
+        <></>
+        }
         <Box sx={{ width: '100%', typography: 'body1' }}>
           <TabContext value={path}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

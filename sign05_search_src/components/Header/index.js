@@ -14,10 +14,11 @@ export default function Header() {
   const location = useLocation();
   const [path, setPath] = useState('/home');
   const username = userState.username;
+  const allowedPaths = ['/home', '/signin', '/signup'];
 
   useEffect(() => {
     let currPath = location.pathname;
-    if (currPath !== '/home' && currPath !== '/signin' && currPath !== '/signup')
+    if (!allowedPaths.includes(currPath))
       currPath = '/home';
     setPath(currPath);
   }, [location.pathname]);

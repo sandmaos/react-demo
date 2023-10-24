@@ -25,9 +25,8 @@ export default function Header() {
     dispatch({ type: 'logout', data: { username: '' } })
   }
 
-
   return (
-    <Paper alignItems sx={{
+    <Paper sx={{
       margin: '10px',
       boxShadow: 3,
       padding: '5px',

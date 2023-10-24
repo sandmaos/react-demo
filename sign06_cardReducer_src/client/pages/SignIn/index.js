@@ -27,7 +27,7 @@ export default function App() {
     myCode: ''
   })
   const [isDisabled, setIsDisabled] = useState(false)
-  const [code, setCode] = useState(0);
+  const [verifyCode, setVerifyCode] = useState('');
   const [timer, setTimer] = useState(emailTime)
   const [counterId, setCounterId] = useState(null)
 
@@ -50,7 +50,7 @@ export default function App() {
     emailjsAuth()
       .then((res) => {
         console.log(res.msg)
-        setCode(res.code);
+        setVerifyCode(res.code);
       })
       .catch((err) => {
         alert(err.msg)
@@ -65,18 +65,17 @@ export default function App() {
 
     setTimeout(() => {
       setIsDisabled(false);
-      setCode(0); //code expired
+      setVerifyCode(''); //code expired
       setTimer(emailTime);
       // Using nowId, the counterId haven't change until next render()
       clearInterval(nowId);
     }, emailTime * 1000);
   }
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { myCode } = formData;
-    // if (myCode === '' || myCode * 1 !== code) {
+    // const { myCode } = formData;
+    // if (myCode * 1 !== verifyCode) {
     //   return alert('Wrong Verify Code!')
     // }
     axios.post('http://127.0.0.1:5000/signin', formData)
@@ -88,7 +87,7 @@ export default function App() {
           navigate('/home')
           setTimeout(() => {
             //update of username in <Header /> slower than location.pathname
-            dispatch({ type: 'signin', data: formData.username })
+            dispatch({ type: 'signin', data: { username: formData.username } })
           }, 10);
         }
         else throw (res.data.message);
