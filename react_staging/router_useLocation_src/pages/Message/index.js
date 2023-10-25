@@ -1,0 +1,48 @@
+import React, { useState } from 'react'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+
+export default function Message() {
+  const [messages] = useState([
+    { id: '001', title: 'msg1', content: 'hamas1' },
+    { id: '002', title: 'msg2', content: 'hamas2' },
+    { id: '003', title: 'msg3', content: 'hamas3' }
+  ]);
+
+  const navigate=useNavigate();
+  const handleClick=(msg)=>{
+    navigate('detail',{
+      replace:false,
+      state:{
+        id:msg.id,
+        title:msg.title,
+        content:msg.content
+      }
+    })
+  }
+  return (
+    <div>
+      <ul>
+        {
+          messages.map((msg) => {
+            return (<>
+              <li key={msg.id}>
+                <NavLink
+                  to={'detail'}
+                  state={{
+                    id: msg.id,
+                    title: msg.title,
+                    content: msg.content
+                  }
+                  }>{msg.title}</NavLink>
+              </li>
+              <button onClick={()=>handleClick(msg)}>navigate</button>
+            </>
+            )
+          })
+        }
+        <hr />
+      </ul>
+      <Outlet />
+    </div>
+  )
+}
