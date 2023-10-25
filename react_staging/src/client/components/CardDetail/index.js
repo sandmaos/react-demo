@@ -63,7 +63,7 @@ export default function CardDetail() {
     if(!card[0])
     return navigate('error')
   },[])
-
+//as
   return (
     <>
       <Container sx={{
