@@ -1,0 +1,22 @@
+/* carousel.module.css */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.fade {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.carouselSlide {
+  flex: 0 0 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.active {
+  opacity: 1;
+}
