@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import Card from '../../components/Card';
 import {
   Button, Container, Paper, MenuItem, Select,
   InputLabel, FormControl, Grid, Pagination,
-  Stack, TextField, Typography
+  Stack, TextField, Typography, useMediaQuery
 } from '@mui/material'
-import { setPageAction, setCardAction } from '../../redux/actions'
+import { setCurrPageAction,setTotalPageAction, setCardAction } from '../../redux/actions'
 
 export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const urlParams = useParams();
   const localUsername = localStorage.getItem('username');
-  const currPage = useSelector(state => state.cardReducer.currPage);
+  const [currPage, setCurrPage] = useState(urlParams?.page * 1 || 1);
   const itemsPerPage = 6;
   const [totlePages, setTotalPages] = useState(0);
   const [currCards, setCurrCards] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [sortOption, setSortOption] = useState(-1);
+
+  const isSmallerScreen = useMediaQuery('(max-width:750px)');
 
   /* This is faster, perhaps the cardData is from redux, the axios in
    App.js returned later, then cardData update again, but there is no big 
@@ -67,14 +70,17 @@ export default function Home() {
     else {
       newAllCardsList = cardData;
     }
-    setTotalPages(Math.ceil(newAllCardsList.length / itemsPerPage));
+    const totalPages = Math.ceil(newAllCardsList.length / itemsPerPage)
+    setTotalPages(totalPages);
+    dispatch(setTotalPageAction(totalPages));
     const currCardsList = newAllCardsList.slice((currPage - 1) * itemsPerPage, currPage * itemsPerPage);
 
     setCurrCards(currCardsList);
   }
 
   const handlePagination = ((e, val) => {
-    dispatch(setPageAction(val));
+    dispatch(setCurrPageAction(val));
+    setCurrPage(val);
     navigate(`/home/${val}`);
   })
 
@@ -154,7 +160,7 @@ export default function Home() {
                   ))} */}
 
                   {currCards.map((item) => (
-                    <Grid key={item.id} item xs={4}>
+                    <Grid key={item.id} item xs={isSmallerScreen ? 6 : 4} >
                       <Card {...item} />
                     </Grid>
                   ))}

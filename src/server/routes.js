@@ -15,9 +15,12 @@ const { auth } = require('./utils/auth.js');
 routes.post('/register', async (req, res) => {
     const { username, pwd } = req.body;
     try {
+        const result = await User.findOne({ username });
+        if (result !== null)
+            return res.json({ duplicate: true, message: 'Duplicate username!' })
         const hashedPwd = await bcrypt.hash(pwd, 5);
         await User.create({ username, pwd: hashedPwd });
-        return res.send('Success!')
+        return res.json({ duplicate: false, message: 'Register success!' })
     } catch (err) {
         return res.status(500).json(err);
     }

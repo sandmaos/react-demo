@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import { FormControl } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setPageAction } from '../../redux/actions';
+import { setCurrPageAction } from '../../redux/actions';
 import axios from 'axios';
 
 export default function AddCard() {
@@ -30,7 +30,7 @@ export default function AddCard() {
     await axios.post('http://127.0.0.1:5000/api/addCard', { ...formData, token: `Bearer_${token}` })
       .then((res) => {
         alert(res.data.msg);
-        dispatch(setPageAction(1));
+        dispatch(setCurrPageAction(1));
         navigate('/');
       }).catch((err) => {
         console.log(err.data.msg);
