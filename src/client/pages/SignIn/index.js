@@ -41,8 +41,8 @@ export default function App() {
     })
   }
 
-  const handleVerify = () => {
-    authPassCode()
+  const handleVerify = async () => {
+    await authPassCode()
       .then((res) => {
         console.log(res.msg)
         setVerifyCode(res.code);
@@ -57,10 +57,10 @@ export default function App() {
     }, 1000);
 
     setTimeout(() => {
+      clearInterval(nowId);
       setIsDisabled(false);
       setVerifyCode(''); //code expired
       setTimer(emailTime); //initial timer
-      clearInterval(nowId);
     }, emailTime * 1000);
   }
 
