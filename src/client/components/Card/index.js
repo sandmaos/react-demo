@@ -6,8 +6,8 @@ import {
   CardMedia,
   Button,
   Typography,
-} 
-from '@mui/material';
+}
+  from '@mui/material';
 import lizard from '../../static/lizard.jpg';
 import giraffe from '../../static/giraffe.jpg';
 import tiger from '../../static/tiger.jpg';
@@ -29,11 +29,9 @@ export default function MediaCard(props) {
   const { cardData, currPage } = cardState;
   const navigate = useNavigate();
   const token = useState(localStorage.getItem('token'))[0];
-  // const { text } = props;
-  const id = props.id;
-  const type = props.type;
+  const { id, type } = props;
   const card = cardData.filter((item) => item.id === id);
-  const { text } = card[0] || '' //ready for 2nd render() in Home
+  const { text } = card[0] || '';
   const timeObj = new Date(id);
   const handleImage = () => {
     switch (type) {
@@ -77,45 +75,45 @@ export default function MediaCard(props) {
 
   return (
     <>
-    <Card sx={{ maxWidth: 500 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={handleImage()}
-        title={type}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {type}
-        </Typography>
-        <Typography variant="body" >
-          {timeObj.toDateString() + ' ' + timeObj.toTimeString().split(' ')[0]}
-        </Typography>
+      <Card sx={{ maxWidth: 500 }}>
+        <CardMedia
+          sx={{ height: 140 }}
+          image={handleImage()}
+          title={type}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {type}
+          </Typography>
+          <Typography variant="body" >
+            {timeObj.toDateString() + ' ' + timeObj.toTimeString().split(' ')[0]}
+          </Typography>
 
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{
-            display: '-webkit-box',
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            WebkitLineClamp: 3,
-          }}>
-          {text}
-        </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              display: '-webkit-box',
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              WebkitLineClamp: 3,
+            }}>
+            {text}
+          </Typography>
 
-      </CardContent>
+        </CardContent>
 
-      <CardActions>
         <CardActions>
-          <Button size="small" onClick={() => {
-            navigate(`/home/${currPage}/${id}`)
-          }}>Learn More</Button>
+          <CardActions>
+            <Button size="small" onClick={() => {
+              navigate(`/home/${currPage}/${id}`)
+            }}>Learn More</Button>
+          </CardActions>
+          <CardActions>
+            <Button size="small" onClick={handleDelete}>Delete</Button>
+          </CardActions>
         </CardActions>
-        <CardActions>
-          <Button size="small" onClick={handleDelete}>Delete</Button>
-        </CardActions>
-      </CardActions>
-    </Card >
+      </Card >
     </>
   );
 }

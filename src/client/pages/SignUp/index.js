@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 import {
@@ -11,6 +12,7 @@ import {
   Link,
   InputAdornment,
   IconButton,
+  Paper,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { FormControl, Grid } from '@mui/material'
@@ -25,6 +27,8 @@ export default function SignUp() {
   const [pwdError, setPwdError] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
 
+  const [isHuman, setIsHuman] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPwdError(false);
@@ -37,6 +41,8 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isHuman)
+      return alert('Please verify!')
     const pwdMatch = formData.pwd === formData.pwdConfirm;
     if (pwdMatch) {
       await axios.post('http://127.0.0.1:5000/api/register', formData)
@@ -108,7 +114,7 @@ export default function SignUp() {
                       onClick={() => setShowPwd(preVal => !preVal)}
                     >
                       {
-                        showPwd ? 'Hide' : 'Show'
+                        showPwd ? 'hide' : 'show'
                       }
                     </IconButton>
                   </InputAdornment>
@@ -138,6 +144,14 @@ export default function SignUp() {
               </Typography>
             }
           </FormControl>
+
+          <ReCAPTCHA
+            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" //for test
+            onChange={(value) => {
+              console.log(value);
+              setIsHuman(true);
+            }}
+          />
 
           <Button
             type="submit"

@@ -49,7 +49,7 @@ export default function Error() {
                 <CardActions>
                   <CardActions>
                     <Button size="small" onClick={() => {
-                      navigate(`/home/${currPage}`)
+                      navigate(`/`)
                     }}>Back</Button>
                   </CardActions>
                 </CardActions>

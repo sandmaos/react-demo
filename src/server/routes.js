@@ -43,7 +43,7 @@ routes.post('/signin', async (req, res) => {
     }
 });
 
-routes.post('/findUser', async (req, res) => {
+routes.post('/find-user', async (req, res) => {
     const { username } = req.body;
     try {
         const user = await User.findOne({ username });

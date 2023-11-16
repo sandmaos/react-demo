@@ -19,7 +19,7 @@ export default function App() {
   const [pwdJwt, setPwdJwt] = useState('');
 
   const handleGetJwt = () => {
-    axios.post('http://127.0.0.1:5000/api/findUser', { username })
+    axios.post('http://127.0.0.1:5000/api/find-user', { username })
       .then(res => {
         if (res.data.findUser) {
           setPwdJwt(res.data.token);

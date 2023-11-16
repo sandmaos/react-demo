@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import {
   InputLabel, FormControl, Grid, Pagination,
   Stack, TextField, Typography, useMediaQuery
 } from '@mui/material'
-import { setCurrPageAction,setTotalPageAction, setCardAction } from '../../redux/actions'
+import { setCurrPageAction, setTotalPageAction, setCardAction } from '../../redux/actions'
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -23,6 +23,10 @@ export default function Home() {
   const [sortOption, setSortOption] = useState(-1);
 
   const isSmallerScreen = useMediaQuery('(max-width:750px)');
+
+  useMemo(() => {
+    dispatch(setCurrPageAction(currPage));
+  }, [currPage])
 
   /* This is faster, perhaps the cardData is from redux, the axios in
    App.js returned later, then cardData update again, but there is no big 
@@ -57,7 +61,6 @@ export default function Home() {
       });
   }, [searchText, currPage, sortOption])
 
-
   const initCards = (cardData) => {
     var newAllCardsList = [];
     if (searchText !== '') {
@@ -76,6 +79,7 @@ export default function Home() {
     const currCardsList = newAllCardsList.slice((currPage - 1) * itemsPerPage, currPage * itemsPerPage);
 
     setCurrCards(currCardsList);
+
   }
 
   const handlePagination = ((e, val) => {
@@ -127,6 +131,7 @@ export default function Home() {
                       type="search"
                       variant="standard"
                       value={searchText}
+                      disabled={currPage === 1 ? false : true}
                       onChange={(e) => setSearchText(e.target.value)}
                     />
                   </Grid>

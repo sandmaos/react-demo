@@ -22,7 +22,8 @@ export const authPassCode = () => {
     })
 }
 
-export const authUpdatePwd = (token) => {
+export const authUpdatePwd = (...params) => {
+    const [token]=params;
     const templateParams = {
         to_name: 'Jay Zeng',
         from_name: 'http://localhost:3000/',
