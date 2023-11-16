@@ -28,8 +28,8 @@ export default function App() {
   const localUsername = localStorage.getItem('username');
   const navigate = useNavigate();
   const PATH = useLocation();
-  const [themMode, setThemMode] = useState('dark');
-  const pubId = PubSub.subscribe('theme', (_, data) => setThemMode(data));
+  const [themeMode, setThemeMode] = useState('dark');
+  const pubId = PubSub.subscribe('theme', (_, data) => setThemeMode(data));
 
   const handleLogOut = () => {
     localStorage.clear();
@@ -85,7 +85,7 @@ export default function App() {
 
   return (
     <>
-      <ThemeProvider theme={createTheme({ palette: { mode: themMode } })}>
+      <ThemeProvider theme={createTheme({ palette: { mode: themeMode } })}>
         <CssBaseline />
         <Header />
         <Routes path='/'>

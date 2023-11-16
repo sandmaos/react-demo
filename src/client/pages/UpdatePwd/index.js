@@ -29,7 +29,7 @@ export default function UpdatePwd(props) {
     setFormData({
       ...formData,
       [name]: value,
-      confirmPwd: name === 'confirmPwd' ? value : ''
+      confirmPwd: name === 'confirmPwd' ? value : '' //clear confirmPwd when input other fields
     })
   }
 
@@ -124,7 +124,7 @@ export default function UpdatePwd(props) {
             {
               pwdError &&
               <Typography fontSize={14} style={{ color: '#f44336' }}>
-                Password Not Match!
+                Password not match!
               </Typography>
             }
             <Button
