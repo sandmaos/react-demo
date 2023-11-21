@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken');
 const jwtSecretKey = 'jay2zxy';
 const bcrypt = require('bcrypt');
 
-const User = require('./userSchema');
-const Card = require('./cardSchema');
+const User = require('./modules/userSchema.js');
+const Card = require('./modules/cardSchema.js');
 
 const { auth } = require('./utils/auth.js');
 

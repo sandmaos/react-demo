@@ -17,11 +17,10 @@ export default function Home() {
   const localUsername = localStorage.getItem('username');
   const [currPage, setCurrPage] = useState(urlParams?.page * 1 || 1);
   const itemsPerPage = 6;
-  const [totlePages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [currCards, setCurrCards] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [sortOption, setSortOption] = useState(-1);
-
   const isSmallerScreen = useMediaQuery('(max-width:750px)');
 
   useMemo(() => {
@@ -87,6 +86,12 @@ export default function Home() {
     setCurrPage(val);
     navigate(`/home/${val}`);
   })
+
+  const delay = (ms) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    })
+  }
 
 
   return (
@@ -184,7 +189,7 @@ export default function Home() {
                 <Grid item xs={4}>
                   <Stack spacing={2} alignItems='center'>
                     <Pagination
-                      count={totlePages}
+                      count={totalPages}
                       variant="outlined"
                       shape="rounded"
                       page={currPage}

@@ -27,13 +27,19 @@ export default function AddCard() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://127.0.0.1:5000/api/addCard', { ...formData, token: `Bearer_${token}` })
+    await axios.post('http://127.0.0.1:5000/api/addCard', { ...formData }, {
+      headers: {
+        token: `Bearer_${token}`,
+      },
+    })
       .then((res) => {
         alert(res.data.msg);
         dispatch(setCurrPageAction(1));
         navigate('/');
       }).catch((err) => {
-        console.log(err.data.msg);
+        console.error(err);
+        if (err.response?.status === 401)
+          alert('Unauthorized!');
       })
   }
 

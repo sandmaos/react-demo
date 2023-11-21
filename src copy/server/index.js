@@ -10,6 +10,7 @@ const process = require("process");
 const dotenv = require("dotenv");
 dotenv.config();
 
+// mongoose.connect('mongodb://localhost:27017/demo', {
 mongoose.connect(`mongodb+srv://${process.env.MDB_NAME}:${process.env.MDB_PWD}@cluster0.vixtgvf.mongodb.net/${DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

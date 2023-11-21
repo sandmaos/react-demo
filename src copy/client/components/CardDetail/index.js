@@ -79,8 +79,8 @@ export default function CardDetail() {
 
           <Grid container spacing={0} alignItems="center">
             <Grid item xs={2}></Grid>
-            <Grid item xs={10}>
-              <Card sx={{ maxWidth: '80%' }}>
+            <Grid item xs={8}>
+              <Card sx={{  boxShadow: 3,maxWidth: '100%' }}>
                 <CardMedia
                   sx={{ minHeight: 400 }}
                   image={handleImage()}

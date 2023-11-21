@@ -7,19 +7,19 @@ import {
     Button,
     Grid,
 } from '@mui/material';
-import CardCarousel from '../CardCarousel';
+import CardCarousel from '../../components/CardCarousel';
 
 export default function Carousel() {
     const slides = useSelector(state => state.cardReducer.cardData);
     const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
-        const timeId = setInterval(() => {
+        const timerId = setInterval(() => {
             setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
         }, 3000);
 
         return () => {
-            clearInterval(timeId);
+            clearInterval(timerId);
         };
     }, []);
 
@@ -34,6 +34,7 @@ export default function Carousel() {
                 margin: '10px',
                 boxShadow: 3,
                 padding: '10px',
+                paddingBottom: '30px',
             }}>
                 <Grid container
                     spacing={0}

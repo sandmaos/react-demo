@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
     Card,
-    Container,
-    Paper,
-    CardActions,
     CardContent,
     CardMedia,
-    Button,
     Grid,
     Typography,
-
 } from '@mui/material';
 import lizard from '../../static/lizard.jpg';
 import giraffe from '../../static/giraffe.jpg';
@@ -21,16 +16,12 @@ import koala from '../../static/koala.jpg';
 import penguin from '../../static/penguin.jpg';
 import dolphin from '../../static/dolphin.jpg';
 import pets from '../../static/pets.jpg';
-
-import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 
 export default function CardCarousel({ id }) {
     const { cardData } = useSelector(state => state.cardReducer);
-    // const navigate = useNavigate();
     const card = cardData.filter((item) => item.id === id);
-    const { text, type } = card[0] || '';
+    const { text, type } = card[0];
     const timeObj = new Date(id);
     const handleImage = () => {
         switch (type) {
@@ -58,23 +49,19 @@ export default function CardCarousel({ id }) {
                 return pets;
         }
     }
-    // useEffect(() => {
-    //     if (!card[0])
-    //         return navigate('error')
-    // }, [])
 
     return (
         <>
-            <Grid container spacing={0} alignItems="center">
+            <Grid container spacing={0} alignItems="center" >
                 <Grid item xs={2}></Grid>
-                <Grid item xs={10}>
-                    <Card sx={{ maxWidth: '80%' }}>
+                <Grid item xs={8} sx={{ marginBottom: '5px' }}>
+                    <Card sx={{ boxShadow: 3, maxWidth: '100%' }}>
                         <CardMedia
                             sx={{ minHeight: 400 }}
                             image={handleImage()}
                             title={type}
                         />
-                        <CardContent>
+                        <CardContent >
                             <Typography gutterBottom variant="h5" component="div">
                                 {type}
                             </Typography>
@@ -86,7 +73,7 @@ export default function CardCarousel({ id }) {
                             </Typography>
                         </CardContent>
 
-                    </Card >
+                    </Card>
                 </Grid>
 
             </Grid>
