@@ -62,13 +62,19 @@ export default function MediaCard(props) {
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      await axios.post('http://127.0.0.1:5000/api/deleteCard', { id, token: `Bearer_${token}` })
+      await axios.post('http://127.0.0.1:5000/api/deleteCard', { id }, {
+        headers: {
+          token: `Bearer_${token}`,
+        },
+      })
         .then((res) => {
           alert(res.data.msg);
           navigate('/');
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
+          if (err.response?.status === 401)
+            alert('Unauthorized!');
         })
     }
   };

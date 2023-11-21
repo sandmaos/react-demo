@@ -37,7 +37,7 @@ export default function App() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value //computed property names
     })
   }
 

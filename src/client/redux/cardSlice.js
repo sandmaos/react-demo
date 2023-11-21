@@ -1,7 +1,7 @@
 const initState = {
     cardData: [],
     currPage: 1,
-    totalPage:1,
+    totalPage: 1,
 };
 
 const cardReducer = (preState = initState, action) => {

@@ -34,15 +34,15 @@ export default function App() {
   const [timer, setTimer] = useState(emailTime)
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value //computed property names
     })
   }
 
-  const handleVerify = () => {
-    authPassCode()
+  const handleVerify = async () => {
+    await authPassCode()
       .then((res) => {
         console.log(res.msg)
         setVerifyCode(res.code);
@@ -57,10 +57,10 @@ export default function App() {
     }, 1000);
 
     setTimeout(() => {
+      clearInterval(nowId);
       setIsDisabled(false);
       setVerifyCode(''); //code expired
       setTimer(emailTime); //initial timer
-      clearInterval(nowId);
     }, emailTime * 1000);
   }
 

@@ -80,6 +80,13 @@ export default function Header() {
               >
                 Home
               </Button>
+              <Button
+                variant="outlined"
+                sx={{ my: 1, mx: 1.5 }}
+                onClick={() => navigate('/file')}
+              >
+                File
+              </Button>
             </Grid>
             <Grid color="inherit" item >
               <Box onClick={handleLightMode} sx={{ ':hover': { cursor: 'pointer' }, marginRight: 1 }}>

@@ -10,7 +10,7 @@ import AddCard from './pages/AddCard'
 import CardDetail from './components/CardDetail'
 import ForgetPwd from './pages/ForgetPwd'
 import UpdatePwd from './pages/UpdatePwd'
-import Carousel from './components/Carousel'
+import Carousel from './pages/Carousel'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useDispatch, useSelector } from 'react-redux'
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom'
@@ -28,8 +28,8 @@ export default function App() {
   const localUsername = localStorage.getItem('username');
   const navigate = useNavigate();
   const PATH = useLocation();
-  const [themMode, setThemMode] = useState('dark');
-  const pubId = PubSub.subscribe('theme', (_, data) => setThemMode(data));
+  const [themeMode, setThemeMode] = useState('dark');
+  const pubId = PubSub.subscribe('theme', (_, data) => setThemeMode(data));
 
   const handleLogOut = () => {
     localStorage.clear();
@@ -85,7 +85,7 @@ export default function App() {
 
   return (
     <>
-      <ThemeProvider theme={createTheme({ palette: { mode: themMode } })}>
+      <ThemeProvider theme={createTheme({ palette: { mode: themeMode } })}>
         <CssBaseline />
         <Header />
         <Routes path='/'>
@@ -98,7 +98,7 @@ export default function App() {
                 element={
                   <ProtectedRoute>
                     <Home />
-                  </ProtectedRoute>
+                  </ProtectedRoute> 
                 }>
               </Route>
               <Route path=':cardId'

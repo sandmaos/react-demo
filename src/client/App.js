@@ -12,6 +12,7 @@ import ForgetPwd from './pages/ForgetPwd'
 import UpdatePwd from './pages/UpdatePwd'
 import Carousel from './pages/Carousel'
 import ProtectedRoute from './components/ProtectedRoute'
+import FilePage from './pages/File'
 import { useDispatch, useSelector } from 'react-redux'
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -42,7 +43,7 @@ export default function App() {
   // verify jwt expire when refresh website
   useEffect(() => {
     if (localUsername !== null) {
-      
+
       dispatch(signInAction(localUsername))
       const token = localStorage.getItem('token');
       axios.post('http://127.0.0.1:5000/api/jwt', { token })
@@ -108,6 +109,15 @@ export default function App() {
                 } >
               </Route>
             </Route>
+          </Route>
+
+          <Route
+            path='file'
+            element={
+              <ProtectedRoute>
+                <FilePage />
+              </ProtectedRoute>
+            }>
           </Route>
 
           <Route

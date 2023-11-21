@@ -29,5 +29,3 @@ Carousel: css module to define fade transition and opacity, translateValue to de
 RegExp: used in protected route to determine path name and cards search logic.
 
 AddCard: submission portal for new cards.
-
-Multer: file system, upload download, store db as buffer, cors config for customer header expose, typy as Blob, use FormData() to handle the file.

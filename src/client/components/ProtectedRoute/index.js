@@ -21,9 +21,8 @@ export default function ProtectedRoute({ children }) {
     //home page
     if (/home/.test(urlPath)) {
         const pageParam = urlParams.page;
-        if (pageParam && (isNaN(pageParam * 1) || pageParam * 1 > totalPage)) {
+        if (pageParam && (isNaN(pageParam * 1) || pageParam * 1 > totalPage))
             return <Navigate to={'/error'} state={{ errorState: 'Page not available' }} />;
-        }
         else
             return <>{children}</>
     }
@@ -45,6 +44,13 @@ export default function ProtectedRoute({ children }) {
     }
 
     if (/carousel/.test(urlPath)) {
+        if (token === null) //not signned in
+            return <Navigate to={'/'} />;
+        else
+            return <>{children}</>;
+    }
+
+    if (/file/.test(urlPath)) {
         if (token === null) //not signned in
             return <Navigate to={'/'} />;
         else
