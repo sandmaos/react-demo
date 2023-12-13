@@ -1,0 +1,29 @@
+.app {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+    color: #ddd;
+    flex-direction: column;
+    transform: translateY(10%);
+}
+
+.chat-container {
+    border: 1px dotted #ddd;
+    padding: 10px;
+    height: 300px;
+    width: 400px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+}
+
+.chat-grid-bot {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-grid-me {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}

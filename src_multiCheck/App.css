@@ -1,0 +1,46 @@
+.app {
+    margin: 100px auto;
+    transform: translateX(35%);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.state-dropdown {
+    background: white;
+    color: black;
+    width: 300px;
+    height: 30px;
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.state-dropdown button {
+    background: white;
+    width: 30px;
+    height: 20px;
+    border: none;
+    align-items: center;
+}
+
+.state-list {
+    margin-top: 10px;
+    padding: 10px;
+    transform: translateX(-30%);
+    background: white;
+    color: black;
+    width: 800px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns with equal width */
+    gap: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.checked-confirm {
+    background: #e5f4fa;
+}

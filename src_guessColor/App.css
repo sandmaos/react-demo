@@ -1,0 +1,43 @@
+.app {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    transform: translateY(10%);
+}
+.app h3{
+    font-size: 1.5em;
+    color: rgb(247, 247, 247);
+}
+
+.color-panel{
+    border: 1px solid white;
+    width: 400px;
+    height: 250px;
+}
+
+.button-group{
+    margin-top: 20px;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    background: #3f3f3f;
+}
+
+.button-group button{
+    background: #2c2c2c;
+    height: 30px;
+    width: 80px;
+    color: rgb(231, 231, 231);
+    border: none;
+    border-radius: 30px;
+}
+
+.button-group button:hover{
+    background: #252525;
+    cursor: pointer;
+}

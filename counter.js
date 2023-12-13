@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react'
 export default function App() {
   const [count, setCount] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
-  const myRef = useRef()
+  const myRef = useRef();
 
   const handleStart = () => {
     clearInterval(intervalId);

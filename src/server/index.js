@@ -1,43 +1,35 @@
 const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 const cors = require('cors');
+
 const app = express();
-const routes = require('./routes')
-const fileRoutes = require('./fileRoutes')
-const PORT = 5000;
-const DB = 'demo';
-const mongoose = require('mongoose');
-
-const process = require("process");
-const dotenv = require("dotenv");
-dotenv.config();
-
-// mongoose.connect('mongodb://localhost:27017/demo', {
-mongoose.connect(`mongodb+srv://${process.env.MDB_NAME}:${process.env.MDB_PWD}@cluster0.vixtgvf.mongodb.net/${DB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-    .then(() => console.log('db ok'))
-    .catch((err) => console.log(err))
-
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-
-app.use(cors()); //must use before /api
-
-// middleware config the CORS headers for file download
-app.use((req, res, next) => {
-    res.header('Access-Control-Expose-Headers', 'Content-Type, Content-Disposition');  
-    next();
+const server = http.createServer(app);
+// const io = new Server(server);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+    }
 });
-app.use('/api', routes);
-app.use('/api', fileRoutes);
+// app.use(cors());
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
-// const cardData=require('./cardData')
-// const Card = require('./cardSchema');
-// Card.create(cardData);
+io.on('connection', (socket) => {
+    console.log('A user connected');
 
-app.listen(PORT, () => {
-    console.log(`Port ${PORT} is listening...`);
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', 'receiverd: ' + msg);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
+});
+
+const PORT = 5000;
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

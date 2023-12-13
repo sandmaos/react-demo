@@ -1,0 +1,33 @@
+.app {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    transform: translateY(10%);
+}
+
+.grid{
+    width: 402px;
+    height: 402px;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    border: 1px solid #ddd;
+}
+
+.item {
+    font-size: 25px;
+    border: 1px solid #ddd ;
+    background: #121212;
+    color: #ddd;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item:disabled{
+    background: #2e2e2e;
+}
+
