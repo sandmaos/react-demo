@@ -1,0 +1,39 @@
+.app {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh; 
+    color: #ddd;
+    flex-direction: column;
+    transform: translateY(10%);
+}
+
+.app input{
+    width: 120px;
+}
+
+.checkout {
+    width: 200px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-box {
+    display: flex;
+    flex-direction: row;
+    /* display: grid;
+    grid-template-columns: repeat(5, 30px);
+    gap: 20px; */
+}
+
+.item {
+    width: 30px;
+    min-height: 28px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px dotted #ddd;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

@@ -1,0 +1,85 @@
+.panel {
+    background: #1e242e;
+    padding: 40px;
+    border-radius: 40px;
+    width: 380px;
+    height: 340px;
+    text-align: left;
+}
+
+.thxPanel {
+    background: #1e242e;
+    padding: 40px;
+    border-radius: 40px;
+    width: 380px;
+    height: 340px;
+    text-align: center;
+}
+
+.header {
+    font-size: 20px;
+}
+
+.title {
+    color: #bcbec0;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.star {
+    background: #272e3f;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+.group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating {
+    color: aliceblue;
+    background: #282e38;
+    border: none;
+    border-radius: 100%;
+    padding: 14px;
+}
+
+.rating:hover {
+    cursor: pointer;
+    background-color: #222730;
+}
+
+.rating:focus {
+    background: orange;
+}
+
+.submit {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: orange;
+}
+
+.submit:hover {
+    cursor: pointer;
+}
+
+.submit:focus {
+    background-color: rgb(206, 134, 2);
+}
+
+
+.result{
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 12px;
+    background: #2e343e;
+    color: orange;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
