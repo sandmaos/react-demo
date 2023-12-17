@@ -1,0 +1,29 @@
+.app {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #ddd;
+    flex-direction: row;
+    transform: translateY(-10%) ;
+}
+
+.app button{
+    /* width: 200px; */
+    background: none;
+    border: none;
+}
+.app button:hover{
+    cursor: pointer;
+}
+
+.app img{
+    width: 200px;
+}
+
+.gift-grid{
+    display: grid;
+    grid-template-columns: repeat(4,200px);
+    gap: 20px;
+}
