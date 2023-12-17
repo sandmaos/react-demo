@@ -1,27 +1,26 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
+
 // const io = new Server(server);
 const io = require('socket.io')(server, {
     cors: {
         origin: '*',
     }
 });
-// app.use(cors());
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.js');
+// });
 
 io.on('connection', (socket) => {
     console.log('A user connected');
 
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', 'receiverd: ' + msg);
+    socket.on('sendMessage', (msg) => {
+        io.emit('getResponse', 'receiverd: ' + msg);
     });
 
     socket.on('disconnect', () => {
