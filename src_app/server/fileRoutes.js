@@ -9,6 +9,13 @@ const { auth } = require('./utils/auth')
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+// middleware config the CORS headers for file download
+const CORS_CONFIG=(req, res, next) => {
+    res.header('Access-Control-Expose-Headers', 'Content-Type, Content-Disposition');
+    next();
+};
+fileRouter.use(CORS_CONFIG);
+
 fileRouter.get('/file/all', async (req, res) => {
     try {
         const files = await File.find().select('_id filename contentType size');
