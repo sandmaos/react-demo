@@ -1,0 +1,9 @@
+// index.pug
+html
+  head
+    title= data.pageTitle
+  body
+    h1 Welcome to #{data.pageTitle}
+    ul
+      each fruit in data.fruits
+        li= fruit

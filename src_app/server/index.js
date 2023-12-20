@@ -26,10 +26,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors()); //must use before /api
 
 // middleware config the CORS headers for file download
-app.use((req, res, next) => {
-    res.header('Access-Control-Expose-Headers', 'Content-Type, Content-Disposition');  
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Expose-Headers', 'Content-Type, Content-Disposition');
+//     next();
+// });
+
 app.use('/api', routes);
 app.use('/api', fileRoutes);
 
