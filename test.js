@@ -1,21 +1,21 @@
-// function compose(s, dict) {
-//   function dfs(currStr) {
-//     if (currStr === s) {
-//       return true;
-//     }
-//     for (let item of dict) {
-//       if (s.startsWith(currStr + item)) {
-//         if (dfs(currStr + item))
-//           return true;
-//       }
-//     }
-//     return false;
-//   }
-//   return dfs('');
-// }
-// const s = 'starbucks'
-// const dict = ['star', 'bucks'];
-// console.log(compose(s, dict));
+function compose(s, dict) {
+  function dfs(currStr) {
+    if (currStr === s) {
+      return true;
+    }
+    for (let item of dict) {
+      if (s.startsWith(currStr + item)) {
+        if (dfs(currStr + item))
+          return true;
+      }
+    }
+    return false;
+  }
+  return dfs('');
+}
+const s = 'starbucks'
+const dict = ['star', 'bucks'];
+console.log(compose(s, dict));
 
 
 function rising(num, list) {
