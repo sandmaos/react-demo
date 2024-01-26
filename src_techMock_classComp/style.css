@@ -1,92 +1,90 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-    color: aliceblue;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: #1f1f1f;
-  }
-    
-  .title-img{
-    width: 400px;
-    height: auto;
-  }
+  font-family: sans-serif;
+  text-align: center;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: #1f1f1f;
+}
 
-  .search-container{
-    padding: 10px;
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-  }
+.title-img {
+  width: 400px;
+  height: auto;
+}
 
-  .search-input{
-    width: 200px;
-  }
+.search-container {
+  padding: 10px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  .App button{
-    height: 30px;
-    width: 70px;
-    border: none;
-    border-radius: 10px;
-    background: #464646;
-    color: aliceblue;
-  }
-  .App button:hover{
-    background:#3d3d3d; 
-    cursor: pointer;
-  }
-  .App button:focus{
-    background:#353535; 
-  }
+.App button {
+  height: 30px;
+  width: 70px;
+  border: none;
+  border-radius: 10px;
+  background: #464646;
+  color: aliceblue;
+}
 
-  .App button:disabled{
-    background: #464646;
-    opacity: 0.5;
-    cursor: not-allowed; 
-  }
-  
-  .search-input{
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
+.App button:hover {
+  background: #3d3d3d;
+  cursor: pointer;
+}
 
-  .search-input:focus{
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-  }
+.App button:focus {
+  background: #353535;
+}
 
-  .grid{
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    gap:30px;
-  }
+.App button:disabled {
+  background: #464646;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-  .grid-item{
-    margin: 0%;
-    cursor: pointer;
-  }
+.search-input {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
 
-  .img-holder{
-    padding-top: 10px;
-    width: 80px;
-    height: 80px;
-  }
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
 
-  .img-holder img{
-    width: 100%;
-  }
+.grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  gap: 30px;
+}
 
-  .page-navi{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    width: 150px;
-    justify-content: space-between;
-  }
-  
+.grid-item {
+  margin: 0%;
+  cursor: pointer;
+}
+
+.img-holder {
+  padding-top: 10px;
+  width: 80px;
+  height: 80px;
+}
+
+.img-holder img {
+  width: 100%;
+}
+
+.page-navi {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  justify-content: space-between;
+}
